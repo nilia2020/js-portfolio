@@ -2,8 +2,8 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+/* const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin"); */
 const Dotenv = require("dotenv-webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
@@ -16,6 +16,8 @@ module.exports = {
         //para que me cree un hash para el nombre de los archivos de imagenes
         assetModuleFilename: "assets/images/[hash][ext][query]",
     },
+    mode: "development",
+    watch: true,
     resolve: {
         // archivos aque va a leer webpack
         extensions: [".js"],
@@ -26,7 +28,6 @@ module.exports = {
             "@images": path.resolve(__dirname, "src/assets/images/"),
         },
     },
-    mode: "production",
     module: {
         rules: [
             {
@@ -84,12 +85,12 @@ module.exports = {
         new Dotenv(),
         new CleanWebpackPlugin(),
     ],
-    optimization: {
+    /* optimization: {
         minimize: true,
         minimizer: [
             //Instanciamos las dependencias que estamos importando
             new CssMinimizerPlugin(),
             new TerserPlugin(),
         ],
-    },
+    }, */
 };
